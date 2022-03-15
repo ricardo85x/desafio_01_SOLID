@@ -1,3 +1,4 @@
+import { CustomApiError } from "../../../error/CustomApiError";
 import { User } from "../../model/User";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
@@ -10,7 +11,12 @@ class CreateUserUseCase {
   constructor(private usersRepository: IUsersRepository) {}
 
   execute({ email, name }: IRequest): User {
-    // Complete aqui
+    const userExists = this.usersRepository.findByEmail(email);
+    if (userExists) {
+      throw new CustomApiError(`User ${email} already exists`, 400);
+    }
+    const newUSer = this.usersRepository.create({ email, name });
+    return newUSer;
   }
 }
 

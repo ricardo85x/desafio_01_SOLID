@@ -7,6 +7,11 @@ class TurnUserAdminController {
 
   handle(request: Request, response: Response): Response {
     // Complete aqui
+
+    const { user_id } = request.params;
+    const result = this.turnUserAdminUseCase.execute({ user_id });
+
+    return response.json(result);
   }
 }
 
