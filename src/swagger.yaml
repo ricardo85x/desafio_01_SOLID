@@ -77,13 +77,14 @@ paths:
                     updated_at:
                       type: string
         "400":
-          description: "Bad Request"
+          description: Bad Request
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  error: string              
+                  error:
+                    type: string              
   "/users/{user_id}/admin":
     patch:
       tags:
