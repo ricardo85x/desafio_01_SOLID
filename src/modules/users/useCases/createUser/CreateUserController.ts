@@ -9,6 +9,7 @@ class CreateUserController {
     const { name, email } = request.body;
     const result = this.createUserUseCase.execute({ name, email });
     return response.status(201).json({
+      id: result.id,
       name: result.name,
       email: result.email,
       admin: result.admin,
